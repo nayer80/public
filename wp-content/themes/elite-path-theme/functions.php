@@ -110,3 +110,30 @@ function elite_path_handle_contact() {
 
 add_action( 'admin_post_nopriv_elite_path_contact', 'elite_path_handle_contact' );
 add_action( 'admin_post_elite_path_contact', 'elite_path_handle_contact' );
+
+/**
+ * Admin-only test email endpoint
+ * Visit: https://<your-site>/?send_test_email=1 (must be logged in as an admin)
+ * This sends a simple test email to `get_option('admin_email')` using `wp_mail()`
+ * Useful for verifying local MailHog/SMTP configuration.
+ */
+add_action( 'init', function() {
+    if ( isset( $_GET['send_test_email'] ) && '1' === (string) $_GET['send_test_email'] ) {
+        if ( ! is_user_logged_in() || ! current_user_can( 'manage_options' ) ) {
+            wp_die( 'You must be logged in as an administrator to run this test.' );
+        }
+
+        $to = get_option( 'admin_email' );
+        $subject = 'Elite Path — Test Email';
+        $body = 'This is a test email sent from the Elite Path theme to verify mail delivery.' . "\n\n" . 'Time: ' . current_time( 'mysql' );
+        $headers = array( 'Reply-To: Site Admin <' . $to . '>' );
+
+        $sent = wp_mail( $to, $subject, $body, $headers );
+
+        if ( $sent ) {
+            wp_die( 'Test email sent to ' . esc_html( $to ) . '. Check your local MailHog or inbox.' );
+        } else {
+            wp_die( 'Failed to send test email. Check PHP mail configuration or WP mail settings.' );
+        }
+    }
+} );
