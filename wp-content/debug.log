@@ -140,3 +140,10 @@
 [02-Dec-2025 17:13:14 UTC] PHP  10. wpdb->__construct($dbuser = 'root', $dbpassword = '[Sensitive Parameter]', $dbname = 'local', $dbhost = '127.0.0.1:10005') C:\Users\King\Local Sites\elite-path\app\public\wp-includes\load.php:720
 [02-Dec-2025 17:13:14 UTC] PHP  11. wpdb->db_connect($allow_bail = *uninitialized*) C:\Users\King\Local Sites\elite-path\app\public\wp-includes\class-wpdb.php:773
 [02-Dec-2025 17:13:14 UTC] PHP  12. mysqli_real_connect($mysql = class mysqli { public $client_info = 'mysqlnd 8.4.10'; public $client_version = 80410; public $connect_errno = 2002; public $connect_error = 'No connection could be made because the target machine actively refused it'; public $errno = 2002; public $error = 'No connection could be made because the target machine actively refused it' }, $hostname = '127.0.0.1', $username = 'root', $password = '[Sensitive Parameter]', $database = NULL, $port = 10005, $socket = NULL, $flags = 0) C:\Users\King\Local Sites\elite-path\app\public\wp-includes\class-wpdb.php:1988
+[02-Dec-2025 18:55:03 UTC] PHP Warning:  Attempt to read property "title" on null in C:\Users\King\Local Sites\elite-path\app\public\wp-includes\class-wp-customize-widgets.php on line 926
+[02-Dec-2025 18:55:03 UTC] PHP Stack trace:
+[02-Dec-2025 18:55:03 UTC] PHP   1. {main}() C:\Users\King\Local Sites\elite-path\app\public\wp-admin\customize.php:0
+[02-Dec-2025 18:55:03 UTC] PHP   2. do_action($hook_name = 'customize_controls_print_footer_scripts') C:\Users\King\Local Sites\elite-path\app\public\wp-admin\customize.php:306
+[02-Dec-2025 18:55:03 UTC] PHP   3. WP_Hook->do_action($args = [0 => '']) C:\Users\King\Local Sites\elite-path\app\public\wp-includes\plugin.php:517
+[02-Dec-2025 18:55:03 UTC] PHP   4. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\Users\King\Local Sites\elite-path\app\public\wp-includes\class-wp-hook.php:348
+[02-Dec-2025 18:55:03 UTC] PHP   5. WP_Customize_Widgets->output_widget_control_templates('') C:\Users\King\Local Sites\elite-path\app\public\wp-includes\class-wp-hook.php:324
