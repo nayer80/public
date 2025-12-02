@@ -1,0 +1,77 @@
+/*
+Theme Name: Elite Path
+Theme URI: https://example.com/elite-path
+Author: Elite Path
+Description: A WordPress theme scaffold replicating the Rayna Tours design (starter).
+Version: 1.0
+Text Domain: elite-path
+*/
+
+:root {
+	--color-primary: #003149; /* deep navy */
+	--color-accent: #ff6a00; /* orange accent */
+	--color-topbar: #021226; /* very dark cyan/blue */
+	--color-muted: #6f8b96;
+	--color-hero-overlay: rgba(2,18,35,0.58);
+	--color-white: #ffffff;
+	--max-width: 1200px;
+	--space-lg: 40px;
+	--space-md: 18px;
+}
+
+html, body { height:100%; }
+body { font-family: 'Poppins', Arial, Helvetica, sans-serif; margin:0; padding:0; color:#26333a; -webkit-font-smoothing:antialiased; }
+
+.container { width:92%; max-width:var(--max-width); margin:0 auto; }
+
+.topbar { background:var(--color-topbar); color: #9fb7c6; font-size:13px; }
+.topbar .container { display:flex; justify-content:space-between; padding:6px 0; }
+.topbar a { color:#cfe9fb; text-decoration:none; }
+
+.site-header { background:transparent; color:var(--color-white); position:relative; z-index:30; }
+.site-header .header-inner { display:flex; align-items:center; justify-content:space-between; padding:16px 0; }
+.site-header .logo { color:var(--color-white); font-weight:700; font-size:22px; text-decoration:none; letter-spacing:0.2px; }
+.site-logo { max-height:40px; width:auto; display:block; }
+
+/* Sticky header appearance */
+.site-header.is-sticky { position:fixed; top:0; left:0; right:0; background:var(--color-white); box-shadow:0 10px 30px rgba(3,16,28,0.12); z-index:60; }
+.site-header.is-sticky .header-inner { padding:8px 0; }
+.site-header.is-sticky .main-nav a { color:var(--color-primary); }
+.site-header.is-sticky .site-logo { max-height:36px; }
+
+.main-nav { display:flex; align-items:center; }
+.main-nav .menu { display:flex; gap:20px; list-style:none; margin:0; padding:0; }
+.main-nav a { color:var(--color-white); text-decoration:none; padding:8px 6px; font-weight:500; }
+.menu-toggle { display:none; background:transparent; border:0; color:var(--color-white); font-size:22px; }
+
+.hero-full { background-size:cover; background-position:center; position:relative; color:var(--color-white); padding:90px 0 70px; }
+.hero-overlay { position:absolute; inset:0; background:linear-gradient(180deg, var(--color-hero-overlay), var(--color-hero-overlay)); }
+.hero-inner { position:relative; display:flex; gap:36px; align-items:flex-start; }
+.hero-left { max-width:560px; }
+.hero-left h1 { font-size:44px; margin:0 0 12px; color:var(--color-white); line-height:1.04; letter-spacing:0.2px; }
+.hero-left p { color:#d9eef8; font-size:17px; margin-bottom:16px; }
+.btn { display:inline-block; padding:10px 18px; border-radius:6px; text-decoration:none; font-weight:600; }
+.btn-primary { background:var(--color-accent); color:var(--color-white); }
+.btn-ghost { background:transparent; color:var(--color-white); border:1px solid rgba(255,255,255,0.16); }
+
+.hero-search { background:var(--color-white); padding:18px; border-radius:8px; width:360px; box-shadow:0 12px 30px rgba(2,18,35,0.18); color:#222; }
+.search-form .field { margin-bottom:12px; }
+.search-form label { display:block; font-size:12px; color:var(--color-muted); margin-bottom:6px; }
+.search-form input, .search-form select { width:100%; padding:10px 12px; border:1px solid #e3e8eb; border-radius:6px; font-size:14px; }
+.field-submit { text-align:right; }
+
+.section { padding:var(--space-lg) 0; }
+
+.owl-carousel .item { background:#fff; padding:22px; border-radius:8px; box-shadow:0 6px 20px rgba(3,16,28,0.06); }
+
+.site-footer { background:#081216; color:#d1dbe0; padding:28px 0; }
+
+@media (max-width:900px){
+	.hero-inner { flex-direction:column; }
+	.hero-search { width:100%; }
+	.menu-toggle { display:block; }
+	.main-nav { display:none; position:absolute; right:18px; top:68px; background:rgba(255,255,255,0.98); padding:12px; border-radius:6px; }
+	.main-nav .menu { flex-direction:column; gap:8px; }
+	.hero-left h1 { font-size:30px; }
+	.site-header.is-sticky { box-shadow:0 6px 18px rgba(3,16,28,0.08); }
+}
