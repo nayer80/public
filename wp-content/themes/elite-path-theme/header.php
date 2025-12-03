@@ -339,4 +339,47 @@
     })();
   </script>
 
+  <script>
+    (function(){
+      // Inject SVG icons into primary menu links that match known slugs.
+      // SVG files are served from the assets/images/icons directory
+      const iconMap = {
+        activities: '<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/icons/activities.svg',
+        holidays: '<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/icons/holidays.svg',
+        visas: '<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/icons/visas.svg',
+        cruises: '<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/icons/cruises.svg'
+      };
+
+      function matchKeyFromHref(href){
+        if(!href) return null;
+        const h = href.toLowerCase();
+        if(h.includes('/activities') || h.includes('activities')) return 'activities';
+        if(h.includes('/holidays') || h.includes('holidays')) return 'holidays';
+        if(h.includes('/visas') || h.includes('visas')) return 'visas';
+        if(h.includes('/cruises') || h.includes('cruises')) return 'cruises';
+        return null;
+      }
+
+      document.addEventListener('DOMContentLoaded', function(){
+        const links = document.querySelectorAll('.main-nav .menu a');
+        links.forEach(function(a){
+          const href = a.getAttribute('href') || '';
+          const key = matchKeyFromHref(href);
+          if(key && iconMap[key]){
+            const span = document.createElement('span');
+            span.className = 'menu-icon';
+            span.setAttribute('aria-hidden','true');
+            const img = document.createElement('img');
+            img.src = iconMap[key];
+            img.alt = '';
+            img.setAttribute('aria-hidden', 'true');
+            span.appendChild(img);
+            a.prepend(span);
+            a.classList.add('menu-with-icon');
+          }
+        });
+      });
+    })();
+  </script>
+
 ```

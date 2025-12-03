@@ -95,8 +95,38 @@
 .header-search input { padding:8px 10px; border-radius:8px; border:1px solid #e6eef2; width:280px; }
 .header-cta { margin-left:6px; }
 
-.main-nav .menu { display:flex; gap:20px; list-style:none; margin:0; padding:0; }
-.main-nav .menu li a { color:var(--color-primary); text-decoration:none; font-weight:600; }
+.main-nav .menu { display:flex; gap:20px; list-style:none; margin:0; padding:0; align-items:center; }
+
+/* Rayna-style pill nav buttons */
+.main-nav .menu li { list-style:none; }
+.main-nav .menu li a { display:inline-flex; align-items:center; gap:10px; background:var(--color-white); padding:10px 18px; border-radius:26px; box-shadow:0 10px 30px rgba(3,16,28,0.06); border:1px solid rgba(3,16,28,0.04); color:var(--color-primary); font-weight:600; text-decoration:none; transition: transform 0.18s ease, box-shadow 0.18s ease, color 0.18s ease; }
+.main-nav .menu li a:hover { transform:translateY(-3px); box-shadow:0 14px 36px rgba(3,16,28,0.08); color:var(--color-accent); }
+
+/* Icon bubble on the left */
+.main-nav .menu li a::before { content: ""; display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:10px; background:linear-gradient(180deg, #f8f9fb, #ffffff); box-shadow:0 6px 18px rgba(3,16,28,0.06); font-size:16px; }
+
+/* Specific icons per menu item (fall back to emoji) */
+.main-nav .menu a[href*="activities"]::before { content: "🔭"; }
+.main-nav .menu a[href*="holidays"]::before { content: "⛱️"; }
+.main-nav .menu a[href*="visas"]::before { content: "🛂"; }
+.main-nav .menu a[href*="cruises"]::before { content: "🚢"; }
+
+@media (max-width:900px){
+  .main-nav .menu { gap:12px; }
+  .main-nav .menu li a { padding:8px 12px; }
+  .main-nav .menu li a::before { width:32px; height:32px; font-size:14px; }
+}
+
+/* When inline SVG icons are injected, hide the pseudo-content to avoid duplicates */
+.main-nav .menu a.menu-with-icon::before { display:none !important; }
+.menu-icon { display:inline-flex; width:36px; height:36px; margin-right:10px; align-items:center; justify-content:center; flex-shrink:0; }
+.menu-icon svg { width:20px; height:20px; display:block; color:var(--color-primary); }
+.main-nav .menu li a.menu-with-icon { padding-left:12px; }
+
+@media (max-width:900px){
+  .menu-icon { width:32px; height:32px; margin-right:8px; }
+  .menu-icon svg { width:18px; height:18px; }
+}
 
 /* Mobile adjustments: use the existing menu-toggle to reveal nav */
 .menu-toggle { display:none; background:transparent; border:0; color:var(--color-primary); font-size:26px; }
