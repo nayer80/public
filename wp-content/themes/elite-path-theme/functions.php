@@ -112,6 +112,94 @@ add_action( 'admin_post_nopriv_elite_path_contact', 'elite_path_handle_contact' 
 add_action( 'admin_post_elite_path_contact', 'elite_path_handle_contact' );
 
 /**
+ * Register 'tour' custom post type
+ */
+function elite_path_register_tours() {
+    $labels = array(
+        'name'               => _x( 'Tours', 'post type general name', 'elite-path' ),
+        'singular_name'      => _x( 'Tour', 'post type singular name', 'elite-path' ),
+        'menu_name'          => _x( 'Tours', 'admin menu', 'elite-path' ),
+        'name_admin_bar'     => _x( 'Tour', 'add new on admin bar', 'elite-path' ),
+        'add_new'            => _x( 'Add New', 'tour', 'elite-path' ),
+        'add_new_item'       => __( 'Add New Tour', 'elite-path' ),
+        'new_item'           => __( 'New Tour', 'elite-path' ),
+        'edit_item'          => __( 'Edit Tour', 'elite-path' ),
+        'view_item'          => __( 'View Tour', 'elite-path' ),
+        'all_items'          => __( 'All Tours', 'elite-path' ),
+        'search_items'       => __( 'Search Tours', 'elite-path' ),
+    );
+
+    $args = array(
+        'labels'             => $labels,
+        'public'             => true,
+        'has_archive'        => true,
+        'rewrite'            => array( 'slug' => 'tours' ),
+        'show_in_rest'       => true,
+        'supports'           => array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields' ),
+        'menu_position'      => 20,
+        'menu_icon'          => 'dashicons-palmtree',
+    );
+
+    register_post_type( 'tour', $args );
+}
+add_action( 'init', 'elite_path_register_tours' );
+
+/**
+ * Create sample tour posts on theme activation if none exist
+ */
+function elite_path_create_sample_tours( $old_name, $old_theme = null ) {
+    // Only run when switching to this theme
+    // Check if any tour posts exist
+    $count = wp_count_posts( 'tour' );
+    if ( $count && $count->publish > 0 ) {
+        return;
+    }
+
+    $samples = array(
+        array(
+            'post_title'   => 'Full Day Explore Dubai City Tour',
+            'post_content' => 'Experience the highlights of Dubai including the Burj Khalifa, Dubai Marina, and traditional souks.',
+            'tour_price'   => 'AED 175',
+            'tour_duration'=> 'Full day',
+            'tour_subtitle' => 'Discover Dubai with a local guide',
+        ),
+        array(
+            'post_title'   => 'Abu Dhabi Cultural Highlights',
+            'post_content' => 'Visit Sheikh Zayed Grand Mosque, Louvre Abu Dhabi, and Qasr Al Watan.',
+            'tour_price'   => 'AED 250',
+            'tour_duration'=> '8 hours',
+            'tour_subtitle' => 'A cultural journey in the UAE capital',
+        ),
+        array(
+            'post_title'   => 'Ras Al Khaimah Adventure Day',
+            'post_content' => 'Desert safari, dune bashing, and authentic local experiences.',
+            'tour_price'   => 'AED 199',
+            'tour_duration'=> 'Half day',
+            'tour_subtitle' => 'Adrenaline and culture in RAK',
+        ),
+    );
+
+    foreach ( $samples as $s ) {
+        $post_id = wp_insert_post( array(
+            'post_type'    => 'tour',
+            'post_title'   => $s['post_title'],
+            'post_content' => $s['post_content'],
+            'post_status'  => 'publish',
+        ) );
+
+        if ( $post_id && ! is_wp_error( $post_id ) ) {
+            update_post_meta( $post_id, 'tour_price', $s['tour_price'] );
+            update_post_meta( $post_id, 'tour_duration', $s['tour_duration'] );
+            update_post_meta( $post_id, 'tour_subtitle', $s['tour_subtitle'] );
+        }
+    }
+
+    // Ensure rewrite rules include the new CPT archive
+    flush_rewrite_rules();
+}
+add_action( 'after_switch_theme', 'elite_path_create_sample_tours', 10, 2 );
+
+/**
  * Admin-only test email endpoint
  * Visit: https://<your-site>/?send_test_email=1 (must be logged in as an admin)
  * This sends a simple test email to `get_option('admin_email')` using `wp_mail()`
