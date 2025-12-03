@@ -164,6 +164,7 @@ function elite_path_insert_sample_tours() {
             'tour_price'   => 'AED 175',
             'tour_duration'=> 'Full day',
             'tour_subtitle' => 'Discover Dubai with a local guide',
+            'image'        => 'dubai.svg',
         ),
         array(
             'post_title'   => 'Abu Dhabi Cultural Highlights',
@@ -171,6 +172,7 @@ function elite_path_insert_sample_tours() {
             'tour_price'   => 'AED 250',
             'tour_duration'=> '8 hours',
             'tour_subtitle' => 'A cultural journey in the UAE capital',
+            'image'        => 'abu-dhabi.svg',
         ),
         array(
             'post_title'   => 'Ras Al Khaimah Adventure Day',
@@ -178,6 +180,7 @@ function elite_path_insert_sample_tours() {
             'tour_price'   => 'AED 199',
             'tour_duration'=> 'Half day',
             'tour_subtitle' => 'Adrenaline and culture in RAK',
+            'image'        => 'ras-al-khaimah.svg',
         ),
     );
 
@@ -193,12 +196,50 @@ function elite_path_insert_sample_tours() {
             update_post_meta( $post_id, 'tour_price', $s['tour_price'] );
             update_post_meta( $post_id, 'tour_duration', $s['tour_duration'] );
             update_post_meta( $post_id, 'tour_subtitle', $s['tour_subtitle'] );
+
+            // Attach featured image if it exists
+            if ( ! empty( $s['image'] ) ) {
+                $image_path = get_template_directory() . '/assets/images/' . $s['image'];
+                if ( file_exists( $image_path ) ) {
+                    $attachment_id = elite_path_attach_image_to_post( $post_id, $image_path, $s['post_title'] );
+                    if ( $attachment_id ) {
+                        set_post_thumbnail( $post_id, $attachment_id );
+                    }
+                }
+            }
         }
     }
 
     // Ensure rewrite rules include the new CPT archive
     flush_rewrite_rules();
     return true;
+}
+
+/**
+ * Helper to attach an image file to a post and return the attachment ID
+ */
+function elite_path_attach_image_to_post( $post_id, $image_path, $title = '' ) {
+    if ( ! function_exists( 'wp_insert_attachment' ) ) {
+        require_once( ABSPATH . 'wp-admin/includes/image.php' );
+    }
+
+    $filename = basename( $image_path );
+    $filetype = wp_check_filetype( $filename, null );
+
+    $attachment = array(
+        'post_mime_type' => $filetype['type'],
+        'post_title'     => $title ?: $filename,
+        'post_content'   => '',
+        'post_status'    => 'inherit'
+    );
+
+    $attach_id = wp_insert_attachment( $attachment, $image_path, $post_id );
+
+    if ( ! is_wp_error( $attach_id ) ) {
+        wp_generate_attachment_metadata( $attach_id, $image_path );
+    }
+
+    return $attach_id;
 }
 
 function elite_path_create_sample_tours( $old_name, $old_theme = null ) {
