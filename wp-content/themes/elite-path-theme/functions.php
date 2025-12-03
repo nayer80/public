@@ -245,7 +245,8 @@ function elite_path_attach_image_to_post( $post_id, $image_path, $title = '' ) {
 function elite_path_create_sample_tours( $old_name, $old_theme = null ) {
     elite_path_insert_sample_tours();
 }
-add_action( 'after_switch_theme', 'elite_path_create_sample_tours', 10, 2 );
+// Note: This hook is now replaced by elite_path_on_activation to also show the admin notice
+// add_action( 'after_switch_theme', 'elite_path_create_sample_tours', 10, 2 );
 
 /**
  * Admin settings page to configure theme options (recipient email, sample data)
@@ -309,6 +310,39 @@ function elite_path_get_recipient_email() {
     $opt = get_option( 'elite_path_recipient_email' );
     return $opt ? $opt : get_option( 'admin_email' );
 }
+
+/**
+ * Admin notice to guide users to settings after theme activation
+ */
+function elite_path_admin_notice() {
+    if ( ! current_user_can( 'manage_options' ) ) {
+        return;
+    }
+
+    // Show notice if 'elite_path_settings_notice' transient exists (set on activation)
+    if ( get_transient( 'elite_path_settings_notice' ) ) {
+        delete_transient( 'elite_path_settings_notice' );
+        $settings_url = admin_url( 'themes.php?page=elite-path-settings' );
+        ?>
+        <div class="notice notice-info is-dismissible">
+            <p>
+                <strong>Elite Path Theme Activated!</strong><br>
+                Visit <a href="<?php echo esc_url( $settings_url ); ?>">Elite Path Settings</a> to configure your contact email, create sample tours, and customize other options.
+            </p>
+        </div>
+        <?php
+    }
+}
+add_action( 'admin_notices', 'elite_path_admin_notice' );
+
+/**
+ * Set transient on theme activation to trigger the admin notice
+ */
+function elite_path_on_activation( $old_name, $old_theme = null ) {
+    set_transient( 'elite_path_settings_notice', 1, HOUR_IN_SECONDS );
+    elite_path_create_sample_tours( $old_name, $old_theme );
+}
+add_action( 'after_switch_theme', 'elite_path_on_activation', 10, 2 );
 
 
 /**
