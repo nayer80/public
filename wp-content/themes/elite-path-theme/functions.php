@@ -147,12 +147,14 @@ add_action( 'init', 'elite_path_register_tours' );
 /**
  * Create sample tour posts on theme activation if none exist
  */
-function elite_path_create_sample_tours( $old_name, $old_theme = null ) {
-    // Only run when switching to this theme
+/**
+ * Insert sample tours programmatically. Safe to call multiple times; will skip if tours exist.
+ */
+function elite_path_insert_sample_tours() {
     // Check if any tour posts exist
     $count = wp_count_posts( 'tour' );
     if ( $count && $count->publish > 0 ) {
-        return;
+        return false;
     }
 
     $samples = array(
@@ -196,8 +198,77 @@ function elite_path_create_sample_tours( $old_name, $old_theme = null ) {
 
     // Ensure rewrite rules include the new CPT archive
     flush_rewrite_rules();
+    return true;
+}
+
+function elite_path_create_sample_tours( $old_name, $old_theme = null ) {
+    elite_path_insert_sample_tours();
 }
 add_action( 'after_switch_theme', 'elite_path_create_sample_tours', 10, 2 );
+
+/**
+ * Admin settings page to configure theme options (recipient email, sample data)
+ */
+function elite_path_admin_menu() {
+    add_theme_page( 'Elite Path Settings', 'Elite Path Settings', 'manage_options', 'elite-path-settings', 'elite_path_settings_page' );
+}
+add_action( 'admin_menu', 'elite_path_admin_menu' );
+
+function elite_path_settings_page() {
+    if ( ! current_user_can( 'manage_options' ) ) {
+        return;
+    }
+
+    $message = '';
+    // Handle saves
+    if ( isset( $_POST['elite_path_settings_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['elite_path_settings_nonce'] ) ), 'elite_path_settings' ) ) {
+        if ( isset( $_POST['recipient_email'] ) ) {
+            $email = sanitize_email( wp_unslash( $_POST['recipient_email'] ) );
+            update_option( 'elite_path_recipient_email', $email );
+            $message = 'Settings saved.';
+        }
+
+        if ( isset( $_POST['create_samples_now'] ) ) {
+            $created = elite_path_insert_sample_tours();
+            $message = $created ? 'Sample tours created.' : 'Sample tours already exist or creation skipped.';
+        }
+    }
+
+    $recipient = get_option( 'elite_path_recipient_email', get_option( 'admin_email' ) );
+
+    ?>
+    <div class="wrap">
+      <h1>Elite Path Settings</h1>
+      <?php if ( $message ) : ?>
+        <div id="message" class="updated notice is-dismissible"><p><?php echo esc_html( $message ); ?></p></div>
+      <?php endif; ?>
+
+      <form method="post">
+        <?php wp_nonce_field( 'elite_path_settings', 'elite_path_settings_nonce' ); ?>
+        <table class="form-table">
+          <tr>
+            <th scope="row"><label for="recipient_email">Contact recipient email</label></th>
+            <td><input name="recipient_email" type="email" id="recipient_email" value="<?php echo esc_attr( $recipient ); ?>" class="regular-text"></td>
+          </tr>
+        </table>
+
+        <p class="submit">
+          <input type="submit" name="save" id="save" class="button button-primary" value="Save Settings">
+          <input type="submit" name="create_samples_now" id="create_samples_now" class="button" value="Create Sample Tours Now">
+        </p>
+      </form>
+    </div>
+    <?php
+}
+
+/**
+ * Filter to allow the contact handler to use the configured recipient email
+ */
+function elite_path_get_recipient_email() {
+    $opt = get_option( 'elite_path_recipient_email' );
+    return $opt ? $opt : get_option( 'admin_email' );
+}
+
 
 /**
  * Admin-only test email endpoint
