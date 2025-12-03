@@ -50,22 +50,22 @@ get_header(); ?>
             <p>Our Impact and Growth</p>
           </div>
           <div class="stats-grid">
-            <div class="stat-card">
-              <div class="stat-number">25+</div>
-              <div class="stat-label">Years of Experience</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-number">50,000+</div>
-              <div class="stat-label">Happy Travelers</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-number">120+</div>
-              <div class="stat-label">Destinations Covered</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-number">95%</div>
-              <div class="stat-label">Customer Satisfaction</div>
-            </div>
+            <article class="stat-card" aria-label="25 Plus Years of Experience">
+              <div class="stat-number" aria-hidden="true">25+</div>
+              <h3 class="stat-label">Years of Experience</h3>
+            </article>
+            <article class="stat-card" aria-label="50,000 Plus Happy Travelers">
+              <div class="stat-number" aria-hidden="true">50,000+</div>
+              <h3 class="stat-label">Happy Travelers</h3>
+            </article>
+            <article class="stat-card" aria-label="120 Plus Destinations Covered">
+              <div class="stat-number" aria-hidden="true">120+</div>
+              <h3 class="stat-label">Destinations Covered</h3>
+            </article>
+            <article class="stat-card" aria-label="95 Percent Customer Satisfaction">
+              <div class="stat-number" aria-hidden="true">95%</div>
+              <h3 class="stat-label">Customer Satisfaction</h3>
+            </article>
           </div>
         </section>
 

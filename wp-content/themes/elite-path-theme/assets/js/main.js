@@ -12,8 +12,8 @@
       });
     }
 
-    // Hero entrance animations using GSAP
-    if (typeof gsap !== 'undefined') {
+    // Hero entrance animations using GSAP (only load if hero section exists)
+    if (typeof gsap !== 'undefined' && $('.hero-left').length > 0) {
       gsap.from('.hero-left h1', {opacity:0, y:40, duration:1, ease:'power3.out'});
       gsap.from('.hero-left p', {opacity:0, y:20, duration:0.8, delay:0.2});
       gsap.from('.hero-search', {opacity:0, y:20, duration:0.8, delay:0.35});

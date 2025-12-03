@@ -22,11 +22,11 @@ get_header(); ?>
             <h2>Find Your Visa Requirements</h2>
             <p class="visa-finder-intro">Select your passport country and destination to discover visa requirements and processing times</p>
             
-            <form class="visa-finder" method="GET" action="#">
+            <form class="visa-finder" method="GET" action="#" aria-label="Visa Requirements Finder">
               <div class="visa-finder-row">
                 <div class="visa-finder-field">
-                  <label for="passport_country">Your Passport Country</label>
-                  <select id="passport_country" name="passport_country" required>
+                  <label for="passport_country">Your Passport Country <abbr title="required">*</abbr></label>
+                  <select id="passport_country" name="passport_country" required aria-required="true">
                     <option value="">-- Select Country --</option>
                     <option value="UAE">United Arab Emirates</option>
                     <option value="Saudi">Saudi Arabia</option>
@@ -42,8 +42,8 @@ get_header(); ?>
                 </div>
 
                 <div class="visa-finder-field">
-                  <label for="destination_country">Destination Country</label>
-                  <select id="destination_country" name="destination_country" required>
+                  <label for="destination_country">Destination Country <abbr title="required">*</abbr></label>
+                  <select id="destination_country" name="destination_country" required aria-required="true">
                     <option value="">-- Select Country --</option>
                     <option value="Dubai">Dubai (UAE)</option>
                     <option value="Riyadh">Riyadh (Saudi Arabia)</option>

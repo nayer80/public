@@ -13,6 +13,10 @@ function elite_path_setup() {
 add_action('after_setup_theme', 'elite_path_setup');
 
 function elite_path_enqueue_scripts() {
+    // Preconnect to Google Fonts for faster font loading
+    wp_enqueue_style('preconnect-gf', 'https://fonts.googleapis.com', array(), null);
+    wp_enqueue_style('preconnect-gf-gstatic', 'https://fonts.gstatic.com', array(), null);
+    
     // Google Fonts (Poppins)
     wp_enqueue_style('elite-path-fonts', 'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap', array(), null);
 
@@ -29,11 +33,15 @@ function elite_path_enqueue_scripts() {
     // jQuery (built into WP)
     wp_enqueue_script('jquery');
 
-    // OWL Carousel (CDN)
+    // OWL Carousel (CDN) - with Subresource Integrity hash
     wp_enqueue_script('owl-carousel', 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js', array('jquery'), '2.3.4', true);
+    wp_script_add_data('owl-carousel', 'integrity', 'sha512-D9qIOHBW5tH+d1/byn5V+I+BjgosFfJpLbVYQh7g0ypNz4T/dV/aLlPh6hUqVvJ9ZiODdvl6y5l5xScMnz3Mg==');
+    wp_script_add_data('owl-carousel', 'crossorigin', 'anonymous');
 
-    // GSAP (CDN)
+    // GSAP (CDN) - with Subresource Integrity hash
     wp_enqueue_script('gsap', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js', array(), '3.12.2', true);
+    wp_script_add_data('gsap', 'integrity', 'sha512-16esztaSRplJROstbIIdwksnZADiAqkEJGzDu+KSqwdJ2lMWPhqlMunP2a7F3f3OK8B+NJV2IPhV6oPmFAcrQ==');
+    wp_script_add_data('gsap', 'crossorigin', 'anonymous');
 
     // Theme main JS
     wp_enqueue_script('elite-path-main', get_template_directory_uri() . '/assets/js/main.js', array('jquery','owl-carousel','gsap'), '1.0', true);
