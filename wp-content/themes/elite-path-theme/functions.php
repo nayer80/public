@@ -77,7 +77,7 @@ function elite_path_handle_contact() {
     }
 
     // Prepare email
-    $to = get_option( 'admin_email' );
+    $to = elite_path_get_recipient_email();
     $email_subject = ! empty( $subject ) ? sprintf( 'Contact form: %s', $subject ) : sprintf( 'Contact form submission from %s', $name );
 
     $body  = "You have received a new message from the contact form on " . home_url() . "\n\n";
