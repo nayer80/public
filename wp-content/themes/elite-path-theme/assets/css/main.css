@@ -677,3 +677,73 @@ abbr[title="required"] { color:var(--color-accent); text-decoration:none; font-w
   .topbar-actions { gap:12px; }
 }
 
+/* Account Menu Sidebar (Rayna Tours Design) */
+.topbar-account-btn { background:transparent; border:none; color:#9fb7c6; font-size:16px; cursor:pointer; padding:6px 8px; border-radius:4px; transition:all 0.2s ease; }
+.topbar-account-btn:hover { color:#cfe9fb; background:rgba(255,255,255,0.06); }
+
+/* Sidebar Overlay */
+.account-sidebar-overlay { position:fixed; top:0; right:0; width:100%; height:100%; background:rgba(0,0,0,0.5); opacity:0; visibility:hidden; transition:opacity 0.3s ease, visibility 0.3s ease; z-index:2100; overflow-y:auto; }
+.account-sidebar-overlay.active { opacity:1; visibility:visible; }
+
+/* Sidebar Container */
+.account-sidebar { position:fixed; top:0; right:0; width:420px; height:100vh; background:var(--color-white); box-shadow:-10px 0 30px rgba(0,0,0,0.2); transform:translateX(100%); transition:transform 0.3s ease; overflow-y:auto; z-index:2101; }
+.account-sidebar-overlay.active .account-sidebar { transform:translateX(0); }
+
+/* Sidebar Header */
+.account-sidebar h2 { font-size:20px; font-weight:700; color:var(--color-primary); margin:0; padding:24px 24px 16px; border-bottom:1px solid #e8eaed; }
+
+/* Close Button */
+.sidebar-close { position:absolute; top:16px; right:16px; background:transparent; border:none; font-size:28px; color:#999; cursor:pointer; width:32px; height:32px; display:flex; align-items:center; justify-content:center; transition:color 0.2s ease; z-index:10; }
+.sidebar-close:hover { color:var(--color-primary); }
+
+/* Auth Section */
+.auth-section { padding:16px 24px; background:#f8f9fa; border-bottom:1px solid #e8eaed; }
+.auth-section p { margin:0 0 12px; font-size:13px; color:#666; }
+.btn-login-now { display:inline-block; background:var(--color-primary); color:var(--color-white); padding:10px 20px; border-radius:6px; text-decoration:none; font-size:13px; font-weight:600; transition:background 0.2s ease; border:none; cursor:pointer; }
+.btn-login-now:hover { background:#001f2d; }
+
+/* Account Section */
+.account-section { padding:20px 24px; border-bottom:1px solid #e8eaed; }
+.account-section h3 { font-size:14px; font-weight:600; color:var(--color-primary); margin:0 0 16px; }
+
+.account-menu { list-style:none; margin:0; padding:0; }
+.account-menu li { margin-bottom:12px; }
+.account-menu li:last-child { margin-bottom:0; }
+
+.account-link { display:flex; align-items:center; justify-content:space-between; padding:12px 16px; background:#f8f9fa; border-radius:8px; text-decoration:none; color:var(--color-primary); font-size:13px; transition:all 0.2s ease; border:1px solid transparent; }
+.account-link:hover { background:#f0f1f3; border-color:#e8eaed; }
+
+.account-icon { font-size:18px; margin-right:12px; display:inline-block; }
+.account-label { flex-grow:1; }
+.account-count { font-size:12px; color:#999; }
+.account-value { font-size:12px; color:#666; font-weight:500; }
+
+.account-setting .account-link { cursor:pointer; }
+
+/* Compliance Section */
+.compliance-section { padding:20px 24px; border-bottom:1px solid #e8eaed; }
+.compliance-section h3 { font-size:14px; font-weight:600; color:var(--color-primary); margin:0 0 12px; }
+
+.compliance-menu { list-style:none; margin:0; padding:0; }
+.compliance-menu li { margin-bottom:8px; }
+.compliance-menu li:last-child { margin-bottom:0; }
+
+.compliance-link { display:block; padding:8px 0; color:#666; text-decoration:none; font-size:13px; transition:color 0.2s ease; }
+.compliance-link:hover { color:var(--color-accent); }
+
+/* Support Section */
+.support-section { padding:20px 24px; }
+.support-section h3 { font-size:14px; font-weight:600; color:var(--color-primary); margin:0 0 12px; }
+
+.support-menu { list-style:none; margin:0; padding:0; }
+.support-menu li { margin-bottom:8px; }
+.support-menu li:last-child { margin-bottom:0; }
+
+.support-link { display:block; padding:8px 0; color:#666; text-decoration:none; font-size:13px; transition:color 0.2s ease; }
+.support-link:hover { color:var(--color-accent); }
+
+/* Sidebar Responsive */
+@media (max-width:600px){
+  .account-sidebar { width:100%; max-width:100%; }
+}
+
