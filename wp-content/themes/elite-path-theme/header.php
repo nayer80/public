@@ -21,14 +21,7 @@
 
         <div class="topbar-actions">
           <a href="mailto:online@raynab2b.com" class="topbar-help" title="Contact Support">Help</a>
-          <?php
-            if ( is_user_logged_in() ) {
-              $user = wp_get_current_user();
-              echo '<a class="topbar-login" href="' . esc_url( admin_url( 'profile.php' ) ) . '">' . esc_html( $user->display_name ) . '</a>';
-            } else {
-              echo '<a class="topbar-login" href="' . esc_url( home_url( '/login/' ) ) . '">Login</a>';
-            }
-          ?>
+          <button class="topbar-account-btn" id="account-menu-toggle" aria-label="My Account" title="Account">👤</button>
           <a class="topbar-cart" href="<?php echo esc_url(home_url('/cart/')); ?>" aria-label="Shopping Cart" title="View Cart">🛒</a>
         </div>
       </div>
@@ -160,6 +153,71 @@
     </div>
   </div>
 
+  <!-- Account Menu Sidebar -->
+  <div class="account-sidebar-overlay" id="account-sidebar">
+    <div class="account-sidebar">
+      <button class="sidebar-close" id="account-sidebar-close" aria-label="Close">&times;</button>
+      
+      <h2>My Account</h2>
+      
+      <div class="auth-section">
+        <p>Already have an account?</p>
+        <a href="<?php echo esc_url(home_url('/login/')); ?>" class="btn-login-now">Login Now</a>
+      </div>
+
+      <div class="account-section">
+        <h3>My Account</h3>
+        <ul class="account-menu">
+          <li>
+            <a href="<?php echo esc_url(home_url('/cart/')); ?>" class="account-link">
+              <span class="account-icon">🛒</span>
+              <span class="account-label">Cart</span>
+              <span class="account-count">0 Item</span>
+            </a>
+          </li>
+          <li>
+            <a href="<?php echo esc_url(home_url('/bookings/')); ?>" class="account-link">
+              <span class="account-icon">📅</span>
+              <span class="account-label">My Bookings</span>
+              <span class="account-count">0 Item</span>
+            </a>
+          </li>
+          <li class="account-setting">
+            <a href="#" class="account-link currency-setting">
+              <span class="account-icon">💱</span>
+              <span class="account-label">Currency</span>
+              <span class="account-value">AED</span>
+            </a>
+          </li>
+          <li class="account-setting">
+            <a href="#" class="account-link language-setting">
+              <span class="account-icon">🌐</span>
+              <span class="account-label">Language</span>
+              <span class="account-value">English</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="compliance-section">
+        <h3>Compliance</h3>
+        <ul class="compliance-menu">
+          <li><a href="<?php echo esc_url(home_url('/terms-conditions/')); ?>" class="compliance-link">Terms & Conditions</a></li>
+          <li><a href="<?php echo esc_url(home_url('/privacy-policy/')); ?>" class="compliance-link">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <div class="support-section">
+        <h3>Help & Support</h3>
+        <ul class="support-menu">
+          <li><a href="<?php echo esc_url(home_url('/about/')); ?>" class="support-link">About Us</a></li>
+          <li><a href="<?php echo esc_url(home_url('/contact/')); ?>" class="support-link">Contact Us</a></li>
+          <li><a href="<?php echo esc_url(home_url('/faq/')); ?>" class="support-link">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
   <header class="site-header">
     <div class="container header-inner">
       <div class="site-branding">
@@ -240,6 +298,41 @@
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
           modal.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+    })();
+
+    // Account Sidebar Menu
+    (function() {
+      const accountBtn = document.getElementById('account-menu-toggle');
+      const accountSidebar = document.getElementById('account-sidebar');
+      const closeSidebarBtn = document.getElementById('account-sidebar-close');
+
+      // Open sidebar
+      accountBtn?.addEventListener('click', function() {
+        accountSidebar.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+
+      // Close sidebar
+      closeSidebarBtn?.addEventListener('click', function() {
+        accountSidebar.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+
+      // Close on overlay click
+      accountSidebar?.addEventListener('click', function(e) {
+        if (e.target === this) {
+          this.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+
+      // Close on Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          accountSidebar?.classList.remove('active');
           document.body.style.overflow = '';
         }
       });
