@@ -470,3 +470,76 @@ abbr[title="required"] { color:var(--color-accent); text-decoration:none; font-w
   .account-menu .btn { width:100%; }
   .account-content { padding:20px; }
 }
+
+/* ===== RAYNA TOURS HOMEPAGE SECTIONS ===== */
+
+/* Best Cities Section */
+.best-cities { padding:60px 0; background:var(--color-white); }
+.best-cities h2 { color:var(--color-primary); font-size:28px; font-weight:700; margin:0 0 36px; text-align:center; }
+.cities-grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:24px; }
+.city-card { background:var(--color-white); border:1px solid #e3e8eb; border-radius:10px; overflow:hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.city-card:hover { transform:translateY(-8px); box-shadow:0 12px 32px rgba(3,16,28,0.12); }
+.city-card a { display:block; padding:28px 24px; text-decoration:none; color:var(--color-primary); text-align:center; }
+.city-card h3 { font-size:18px; font-weight:700; margin:0 0 8px; color:var(--color-primary); }
+.city-card p { font-size:13px; color:var(--color-muted); margin:0; }
+
+@media (max-width:1100px){
+  .cities-grid { grid-template-columns:repeat(2, 1fr); }
+}
+@media (max-width:700px){
+  .cities-grid { grid-template-columns:1fr; }
+}
+
+/* Best Activities Sections */
+.best-activities { padding:60px 0; border-bottom:1px solid #e3e8eb; }
+.best-activities h2 { color:var(--color-primary); font-size:28px; font-weight:700; margin:0 0 36px; text-align:center; }
+.activities-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; }
+.activity-card { background:var(--color-white); border:1px solid #e3e8eb; border-radius:10px; overflow:hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; display:flex; flex-direction:column; position:relative; }
+.activity-card:hover { transform:translateY(-8px); box-shadow:0 12px 32px rgba(3,16,28,0.12); }
+.activity-image { width:100%; padding-top:60%; background-size:cover; background-position:center; position:relative; }
+.activity-body { padding:20px; flex-grow:1; display:flex; flex-direction:column; }
+.badge { position:absolute; top:12px; right:12px; padding:6px 12px; background:var(--color-accent); color:white; border-radius:4px; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; z-index:10; }
+.badge-new { background:var(--color-accent); }
+.activity-card h3 { margin:0 0 12px; font-size:16px; font-weight:600; color:var(--color-primary); }
+.activity-card a { color:var(--color-primary); text-decoration:none; }
+.activity-card a:hover { color:var(--color-accent); }
+.rating { display:flex; align-items:center; gap:8px; margin-bottom:12px; }
+.rating .stars { color:var(--color-accent); font-size:14px; letter-spacing:1px; }
+.rating .review-count { color:var(--color-muted); font-size:12px; }
+.price { display:flex; align-items:baseline; gap:4px; margin-top:auto; }
+.price .original { text-decoration:line-through; color:var(--color-muted); font-size:12px; }
+.price .currency { font-size:13px; color:var(--color-muted); font-weight:600; }
+.price .amount { font-size:20px; font-weight:700; color:var(--color-primary); }
+.price .discount { background:rgba(255,106,0,0.1); color:var(--color-accent); padding:2px 6px; border-radius:3px; font-size:11px; font-weight:700; margin-left:4px; }
+
+@media (max-width:1100px){
+  .activities-grid { grid-template-columns:repeat(2, 1fr); }
+}
+@media (max-width:700px){
+  .activities-grid { grid-template-columns:1fr; }
+}
+
+/* Explore More Section */
+.explore-more { padding:60px 0; background:linear-gradient(135deg, rgba(0,49,73,0.04), rgba(255,106,0,0.02)); }
+.explore-more h2 { color:var(--color-primary); font-size:28px; font-weight:700; margin:0 0 36px; text-align:center; }
+.explore-grid { display:grid; grid-template-columns:repeat(7, 1fr); gap:20px; }
+.explore-card { background:var(--color-white); border-radius:10px; padding:24px; text-align:center; border:1px solid #e3e8eb; transition: all 0.3s ease; }
+.explore-card:hover { transform:translateY(-6px); box-shadow:0 10px 28px rgba(3,16,28,0.1); }
+.explore-card a { display:block; text-decoration:none; color:var(--color-primary); }
+.explore-icon { font-size:42px; display:block; margin-bottom:14px; }
+.explore-card h3 { font-size:15px; font-weight:600; margin:0; color:var(--color-primary); line-height:1.4; }
+.explore-card a:hover { color:var(--color-accent); }
+
+@media (max-width:1100px){
+  .explore-grid { grid-template-columns:repeat(3, 1fr); gap:18px; }
+}
+@media (max-width:900px){
+  .explore-grid { grid-template-columns:repeat(2, 1fr); }
+  .explore-card { padding:20px; }
+}
+@media (max-width:700px){
+  .explore-grid { grid-template-columns:1fr; }
+  .explore-icon { font-size:36px; margin-bottom:12px; }
+  .explore-card h3 { font-size:14px; }
+}
+
