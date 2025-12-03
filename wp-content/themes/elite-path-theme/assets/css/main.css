@@ -53,12 +53,39 @@
 .alert-warning { background: linear-gradient(180deg, rgba(255,193,7,0.06), rgba(255,193,7,0.03)); border:1px solid rgba(255,193,7,0.12); color:#6b4b00; }
 
 /* Header and topbar styles to match Rayna Tours look */
-.topbar { background:#021226; color:#9fb7c6; font-size:13px; }
-.topbar .container { display:flex; justify-content:space-between; align-items:center; padding:6px 0; }
-.topbar-left { color:#cfe9fb; }
-.topbar-right { display:flex; gap:12px; align-items:center; }
-.topbar-links a, .topbar-actions a { color:#9fb7c6; text-decoration:none; margin-right:8px; }
-.topbar .sep { color:rgba(255,255,255,0.08); margin:0 6px; }
+.topbar { background:#021226; color:#9fb7c6; font-size:13px; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.06); }
+.topbar .container { display:flex; justify-content:space-between; align-items:center; }
+.topbar-left { color:#cfe9fb; display:flex; align-items:center; gap:8px; }
+.helpline-label { font-weight:600; }
+.helpline-link { color:#cfe9fb; text-decoration:none; transition:color 0.2s ease; }
+.helpline-link:hover { color:var(--color-accent); }
+
+.topbar-right { display:flex; gap:24px; align-items:center; justify-content:flex-end; flex-wrap:wrap; }
+
+/* Selectors (Language, Currency) */
+.topbar-selectors { display:flex; gap:16px; align-items:center; }
+
+.selector-group { position:relative; }
+.selector-toggle { background:transparent; border:none; color:#9fb7c6; font-size:13px; cursor:pointer; padding:6px 8px; border-radius:4px; transition: color 0.2s ease, background 0.2s ease; display:flex; align-items:center; gap:6px; font-weight:500; }
+.selector-toggle:hover { color:#cfe9fb; background:rgba(255,255,255,0.06); }
+.selector-icon { font-size:10px; transition:transform 0.3s ease; }
+.selector-toggle[aria-expanded="true"] .selector-icon { transform:rotate(180deg); }
+
+.selector-dropdown { position:absolute; top:100%; right:0; background:var(--color-white); border:1px solid #e3e8eb; border-radius:8px; box-shadow:0 10px 30px rgba(3,16,28,0.15); min-width:220px; margin-top:8px; opacity:0; visibility:hidden; transition: opacity 0.3s ease, visibility 0.3s ease; z-index:1000; }
+.selector-dropdown.active { opacity:1; visibility:visible; }
+
+.selector-option { display:block; padding:12px 16px; color:var(--color-primary); text-decoration:none; font-size:13px; border-bottom:1px solid #f0f0f0; transition: background 0.2s ease, color 0.2s ease; }
+.selector-option:last-child { border-bottom:none; }
+.selector-option:hover { background:#f8f9fa; color:var(--color-accent); }
+.selector-option.active { background:rgba(255,106,0,0.08); color:var(--color-accent); font-weight:600; }
+
+.topbar-help { color:#9fb7c6; text-decoration:none; transition:color 0.2s ease; }
+.topbar-help:hover { color:var(--color-accent); }
+
+.topbar-actions { display:flex; gap:16px; align-items:center; }
+.topbar-login, .topbar-cart { color:#9fb7c6; text-decoration:none; transition:color 0.2s ease; }
+.topbar-login:hover, .topbar-cart:hover { color:var(--color-accent); }
+.topbar-cart { font-size:18px; }
 
 .site-header { background:transparent; transition:all .28s ease; }
 .site-header .header-inner { display:flex; align-items:center; justify-content:space-between; padding:18px 0; }
@@ -73,6 +100,22 @@
 
 /* Mobile adjustments: use the existing menu-toggle to reveal nav */
 .menu-toggle { display:none; background:transparent; border:0; color:var(--color-primary); font-size:26px; }
+
+@media (max-width:900px){
+  .topbar-selectors { gap:12px; }
+  .selector-label { display:none; }
+  .selector-toggle { padding:4px 6px; }
+}
+
+@media (max-width:700px){
+  .topbar { font-size:12px; padding:8px 0; }
+  .topbar .container { flex-direction:column; gap:12px; }
+  .topbar-left { width:100%; justify-content:center; }
+  .topbar-right { width:100%; }
+  .topbar-selectors { justify-content:center; }
+  .selector-dropdown { left:0; right:auto; }
+  .header-search input { width:100%; max-width:200px; }
+}
 
 @media (max-width:900px){
   .header-actions .header-search { display:none; }
