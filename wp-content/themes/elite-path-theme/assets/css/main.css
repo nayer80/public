@@ -849,3 +849,23 @@ abbr[title="required"] { color:var(--color-accent); text-decoration:none; font-w
   .search-input, .search-btn { width:100%; }
 }
 
+/* Replace visible 'Contact' menu text with an icon while keeping the link accessible */
+.main-nav .menu a[href*="/contact"] {
+  /* keep text in DOM for screen readers but hide visually */
+  color: transparent !important;
+  position: relative;
+}
+.main-nav .menu a[href*="/contact"]::after {
+  content: "✉";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-primary);
+  font-size: 16px;
+  line-height: 1;
+}
+.main-nav .menu a[href*="/contact"]:hover::after {
+  color: var(--color-accent);
+}
+
