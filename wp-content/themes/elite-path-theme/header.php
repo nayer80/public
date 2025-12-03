@@ -18,7 +18,14 @@
           <a href="mailto:online@raynab2b.com">Help</a>
         </div>
         <div class="topbar-actions">
-          <a class="topbar-login" href="#">Login</a>
+          <?php
+            if ( is_user_logged_in() ) {
+              $user = wp_get_current_user();
+              echo '<a class="topbar-login" href="' . esc_url( admin_url( 'profile.php' ) ) . '">' . esc_html( $user->display_name ) . '</a>';
+            } else {
+              echo '<a class="topbar-login" href="' . esc_url( home_url( '/login/' ) ) . '">Login</a>';
+            }
+          ?>
           <a class="topbar-cart" href="#" aria-label="Cart">🛒</a>
         </div>
       </div>
