@@ -13,42 +13,14 @@
         <a href="tel:+97142087112" class="helpline-link">+971 420 87112</a>
       </div>
       <div class="topbar-right">
-        <div class="topbar-selectors">
-          <!-- Language Selector -->
-          <div class="selector-group language-selector">
-            <button class="selector-toggle" id="lang-toggle" aria-expanded="false" aria-label="Select Language">
-              <span class="selector-label">English</span>
-              <span class="selector-icon">▼</span>
-            </button>
-            <div class="selector-dropdown" id="lang-dropdown">
-              <a href="#" class="selector-option active" data-lang="en">English</a>
-              <a href="#" class="selector-option" data-lang="ar">العربية</a>
-              <a href="#" class="selector-option" data-lang="es">Español</a>
-              <a href="#" class="selector-option" data-lang="fr">Français</a>
-            </div>
-          </div>
-
-          <!-- Currency Selector -->
-          <div class="selector-group currency-selector">
-            <button class="selector-toggle" id="currency-toggle" aria-expanded="false" aria-label="Select Currency">
-              <span class="selector-label">AED</span>
-              <span class="selector-icon">▼</span>
-            </button>
-            <div class="selector-dropdown" id="currency-dropdown">
-              <a href="#" class="selector-option active" data-currency="aed">AED - United Arab Emirates Dirham</a>
-              <a href="#" class="selector-option" data-currency="usd">USD - United States Dollar</a>
-              <a href="#" class="selector-option" data-currency="eur">EUR - Euro</a>
-              <a href="#" class="selector-option" data-currency="gbp">GBP - British Pound</a>
-              <a href="#" class="selector-option" data-currency="sar">SAR - Saudi Riyal</a>
-              <a href="#" class="selector-option" data-currency="kwd">KWD - Kuwaiti Dinar</a>
-            </div>
-          </div>
-
-          <!-- Help Link -->
-          <a href="mailto:online@raynab2b.com" class="topbar-help" title="Contact Support">Help</a>
-        </div>
+        <button class="currency-selector-btn" id="currency-selector-open" aria-label="Select Language and Currency">
+          <span class="lang-label">English</span>
+          <span class="sep">/</span>
+          <span class="currency-label">AED</span>
+        </button>
 
         <div class="topbar-actions">
+          <a href="mailto:online@raynab2b.com" class="topbar-help" title="Contact Support">Help</a>
           <?php
             if ( is_user_logged_in() ) {
               $user = wp_get_current_user();
@@ -58,6 +30,131 @@
             }
           ?>
           <a class="topbar-cart" href="<?php echo esc_url(home_url('/cart/')); ?>" aria-label="Shopping Cart" title="View Cart">🛒</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Currency & Language Selector Modal -->
+  <div class="currency-modal-overlay" id="currency-modal">
+    <div class="currency-modal">
+      <button class="modal-close" id="currency-modal-close" aria-label="Close">&times;</button>
+      
+      <div class="modal-content">
+        <!-- Languages Column -->
+        <div class="modal-column">
+          <h2>Languages</h2>
+          <div class="languages-grid">
+            <button class="lang-option active" data-lang="en">English</button>
+            <button class="lang-option" data-lang="ar">العربية</button>
+            <button class="lang-option" data-lang="es">Español</button>
+            <button class="lang-option" data-lang="fr">Français</button>
+            <button class="lang-option" data-lang="de">Deutsch</button>
+            <button class="lang-option" data-lang="pt">Português</button>
+          </div>
+        </div>
+
+        <!-- Currencies Column -->
+        <div class="modal-column">
+          <h2>Popular Currencies</h2>
+          <div class="currencies-grid popular-currencies">
+            <button class="currency-option active" data-currency="aed">
+              <span class="currency-code">AED</span>
+              <span class="currency-name">Arab Emirate Dirham</span>
+            </button>
+            <button class="currency-option" data-currency="inr">
+              <span class="currency-code">INR</span>
+              <span class="currency-name">Indian Rupee</span>
+            </button>
+            <button class="currency-option" data-currency="usd">
+              <span class="currency-code">USD</span>
+              <span class="currency-name">American Dollar</span>
+            </button>
+          </div>
+
+          <h3>More Currencies</h3>
+          <div class="currencies-grid more-currencies">
+            <button class="currency-option" data-currency="amd">
+              <span class="currency-code">AMD</span>
+              <span class="currency-name">Armenian Dram</span>
+            </button>
+            <button class="currency-option" data-currency="aud">
+              <span class="currency-code">AUD</span>
+              <span class="currency-name">Australian Dollar</span>
+            </button>
+            <button class="currency-option" data-currency="dkk">
+              <span class="currency-code">DKK</span>
+              <span class="currency-name">Denmark Krona</span>
+            </button>
+            <button class="currency-option" data-currency="eur">
+              <span class="currency-code">EUR</span>
+              <span class="currency-name">Euro</span>
+            </button>
+            <button class="currency-option" data-currency="gbp">
+              <span class="currency-code">GBP</span>
+              <span class="currency-name">UK Pounds Sterling</span>
+            </button>
+            <button class="currency-option" data-currency="gel">
+              <span class="currency-code">GEL</span>
+              <span class="currency-name">Georgian Lari</span>
+            </button>
+            <button class="currency-option" data-currency="hkd">
+              <span class="currency-code">HKD</span>
+              <span class="currency-name">Hong Kong Dollar</span>
+            </button>
+            <button class="currency-option" data-currency="idr">
+              <span class="currency-code">IDR</span>
+              <span class="currency-name">Indonesian Rupiah</span>
+            </button>
+            <button class="currency-option" data-currency="jpy">
+              <span class="currency-code">JPY</span>
+              <span class="currency-name">Japanese Yen</span>
+            </button>
+            <button class="currency-option" data-currency="kzt">
+              <span class="currency-code">KZT</span>
+              <span class="currency-name">Kazakhstan Tenge</span>
+            </button>
+            <button class="currency-option" data-currency="myr">
+              <span class="currency-code">MYR</span>
+              <span class="currency-name">Malaysian Ringgit Rates</span>
+            </button>
+            <button class="currency-option" data-currency="omr">
+              <span class="currency-code">OMR</span>
+              <span class="currency-name">Omani Riyal</span>
+            </button>
+            <button class="currency-option" data-currency="mur">
+              <span class="currency-code">MUR</span>
+              <span class="currency-name">Mauritian Rupee</span>
+            </button>
+            <button class="currency-option" data-currency="sar">
+              <span class="currency-code">SAR</span>
+              <span class="currency-name">Saudi Arabian Riyal</span>
+            </button>
+            <button class="currency-option" data-currency="sgd">
+              <span class="currency-code">SGD</span>
+              <span class="currency-name">Singapore dollar</span>
+            </button>
+            <button class="currency-option" data-currency="thb">
+              <span class="currency-code">THB</span>
+              <span class="currency-name">Thai Baht</span>
+            </button>
+            <button class="currency-option" data-currency="try">
+              <span class="currency-code">TRY</span>
+              <span class="currency-name">Turkish Lira</span>
+            </button>
+            <button class="currency-option" data-currency="uzs">
+              <span class="currency-code">UZS</span>
+              <span class="currency-name">Uzbekistani sum</span>
+            </button>
+            <button class="currency-option" data-currency="vnd">
+              <span class="currency-code">VND</span>
+              <span class="currency-name">Vietnamese Dong</span>
+            </button>
+            <button class="currency-option" data-currency="zar">
+              <span class="currency-code">ZAR</span>
+              <span class="currency-name">South African Rand</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -94,56 +191,58 @@
   </header>
 
   <script>
-    // Currency and Language Selector Dropdowns
     (function() {
-      function setupSelector(toggleId, dropdownId) {
-        const toggle = document.getElementById(toggleId);
-        const dropdown = document.getElementById(dropdownId);
-        if (!toggle || !dropdown) return;
+      const modal = document.getElementById('currency-modal');
+      const openBtn = document.getElementById('currency-selector-open');
+      const closeBtn = document.getElementById('currency-modal-close');
+      const langLabel = document.querySelector('.lang-label');
+      const currencyLabel = document.querySelector('.currency-label');
 
-        toggle.addEventListener('click', function(e) {
-          e.preventDefault();
-          const isExpanded = this.getAttribute('aria-expanded') === 'true';
-          this.setAttribute('aria-expanded', !isExpanded);
-          dropdown.classList.toggle('active');
-        });
+      // Open modal
+      openBtn?.addEventListener('click', function() {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
 
-        // Close on option click
-        dropdown.querySelectorAll('.selector-option').forEach(option => {
-          option.addEventListener('click', function(e) {
-            e.preventDefault();
-            const label = this.textContent.split(' - ')[0];
-            toggle.querySelector('.selector-label').textContent = label;
-            
-            // Remove active class from all options
-            dropdown.querySelectorAll('.selector-option').forEach(opt => {
-              opt.classList.remove('active');
-            });
-            
-            // Add active class to clicked option
-            this.classList.add('active');
-            
-            // Close dropdown
-            toggle.setAttribute('aria-expanded', 'false');
-            dropdown.classList.remove('active');
-          });
-        });
-      }
+      // Close modal
+      closeBtn?.addEventListener('click', function() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      });
 
-      // Close dropdowns when clicking outside
-      document.addEventListener('click', function(e) {
-        if (!e.target.closest('.selector-group')) {
-          document.querySelectorAll('.selector-toggle').forEach(toggle => {
-            toggle.setAttribute('aria-expanded', 'false');
-          });
-          document.querySelectorAll('.selector-dropdown').forEach(dropdown => {
-            dropdown.classList.remove('active');
-          });
+      // Close on overlay click
+      modal?.addEventListener('click', function(e) {
+        if (e.target === this) {
+          this.classList.remove('active');
+          document.body.style.overflow = '';
         }
       });
 
-      setupSelector('lang-toggle', 'lang-dropdown');
-      setupSelector('currency-toggle', 'currency-dropdown');
+      // Language selection
+      document.querySelectorAll('.lang-option').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.lang-option').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          langLabel.textContent = this.textContent;
+        });
+      });
+
+      // Currency selection
+      document.querySelectorAll('.currency-option').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.currency-option').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          currencyLabel.textContent = this.querySelector('.currency-code').textContent;
+        });
+      });
+
+      // Close on Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          modal.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
     })();
   </script>
 
