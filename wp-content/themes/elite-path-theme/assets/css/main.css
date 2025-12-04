@@ -1003,6 +1003,14 @@ abbr[title="required"] { color:var(--color-accent); text-decoration:none; font-w
   width: auto;
 }
 
+.category-icon-img {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
 @media (max-width: 768px) {
   .category-buttons {
     grid-template-columns: repeat(2, 1fr);

@@ -229,24 +229,25 @@
         <div class="category-buttons-header">
             <div class="category-group">
               <a href="<?php echo esc_url(home_url('/activities/')); ?>" class="category-btn">
-                <span class="category-icon">📍</span>
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-activities.svg" alt="Activities" class="category-icon-img" decoding="async" />
                 <span class="category-label">Activities</span>
               </a>
             </div>
             <div class="category-group">
               <a href="<?php echo esc_url(home_url('/holidays/')); ?>" class="category-btn">
-                <span class="category-icon">🏖️</span>
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-holidays.svg" alt="Holidays" class="category-icon-img" decoding="async" />
                 <span class="category-label">Holidays</span>
               </a>
             </div>
             <div class="category-group">
               <a href="<?php echo esc_url(home_url('/visas/')); ?>" class="category-btn">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-visas.svg" alt="Visas" class="category-icon-img" decoding="async" />
                 <span class="category-label">Visas</span>
               </a>
             </div>
             <div class="category-group">
               <a href="<?php echo esc_url(home_url('/cruises/')); ?>" class="category-btn">
-                <span class="category-icon">🚢</span>
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-cruises.svg" alt="Cruises" class="category-icon-img" decoding="async" />
                 <span class="category-label">Cruises</span>
               </a>
             </div>
