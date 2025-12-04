@@ -224,6 +224,26 @@
         <a class="logo" href="<?php echo esc_url(home_url('/')); ?>">
           <img src="<?php echo get_template_directory_uri(); ?>/assets/images/elite-path-logo.png" alt="<?php bloginfo('name'); ?>" class="site-logo">
         </a>
+        
+        <!-- Category Buttons Below Logo -->
+        <div class="category-buttons-header">
+          <a href="<?php echo esc_url(home_url('/activities/')); ?>" class="category-btn">
+            <span class="category-icon">📍</span>
+            <span class="category-label">Activities</span>
+          </a>
+          <a href="<?php echo esc_url(home_url('/holidays/')); ?>" class="category-btn">
+            <span class="category-icon">🏖️</span>
+            <span class="category-label">Holidays</span>
+          </a>
+          <a href="<?php echo esc_url(home_url('/visas/')); ?>" class="category-btn">
+            <span class="category-icon">🛂</span>
+            <span class="category-label">Visas</span>
+          </a>
+          <a href="<?php echo esc_url(home_url('/cruises/')); ?>" class="category-btn">
+            <span class="category-icon">🚢</span>
+            <span class="category-label">Cruises</span>
+          </a>
+        </div>
       </div>
 
       <button class="menu-toggle" aria-expanded="false" aria-controls="primary-menu">☰</button>
