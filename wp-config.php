@@ -30,7 +30,7 @@ define( 'DB_USER', 'root' );
 define( 'DB_PASSWORD', 'root' );
 
 /** Database hostname — use Local app TCP host:port to connect reliably */
-define( 'DB_HOST', '127.0.0.1:10005' );
+define( 'DB_HOST', '127.0.0.1:10006' );
 
 /** Database charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );

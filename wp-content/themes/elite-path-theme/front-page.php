@@ -23,6 +23,30 @@ get_header(); ?>
     </div>
   </section>
 
+  <!-- CATEGORY FILTER -->
+  <section class="section category-filter">
+    <div class="container">
+      <div class="category-buttons">
+        <a href="<?php echo esc_url(home_url('/activities/')); ?>" class="category-btn">
+          <span class="category-icon">📍</span>
+          <span class="category-label">Activities</span>
+        </a>
+        <a href="<?php echo esc_url(home_url('/holidays/')); ?>" class="category-btn">
+          <span class="category-icon">🏖️</span>
+          <span class="category-label">Holidays</span>
+        </a>
+        <a href="<?php echo esc_url(home_url('/visas/')); ?>" class="category-btn">
+          <span class="category-icon">🛂</span>
+          <span class="category-label">Visas</span>
+        </a>
+        <a href="<?php echo esc_url(home_url('/cruises/')); ?>" class="category-btn">
+          <span class="category-icon">🚢</span>
+          <span class="category-label">Cruises</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- BEST CITIES TO VISIT -->
   <section class="section best-cities">
     <div class="container">
