@@ -1,13 +1,17 @@
 <?php
 /* Visa Services page template - Rayna Tours style */
-get_header(); ?>
+get_header(); 
 
-<?php while ( have_posts() ) : the_post(); ?>
+// Handle case where no post exists
+if ( have_posts() ) {
+  while ( have_posts() ) {
+    the_post();
+?>
 
   <!-- Page Header with Hero -->
   <section class="page-header visas-header">
     <div class="container">
-      <h1 class="page-title">International Visas</h1>
+      <h1 class="page-title"><?php the_title(); ?></h1>
       <p class="page-intro">Get your visa hassle-free. Fast, easy, and secure international visa application.</p>
       
       <div class="visas-search">
@@ -355,6 +359,58 @@ get_header(); ?>
     </main>
   </div>
 
-<?php endwhile; ?>
+<?php 
+  }
+} else {
+  // Fallback if no post exists
+?>
+  <!-- Page Header with Hero -->
+  <section class="page-header visas-header">
+    <div class="container">
+      <h1 class="page-title">International Visas</h1>
+      <p class="page-intro">Get your visa hassle-free. Fast, easy, and secure international visa application.</p>
+      
+      <div class="visas-search">
+        <div class="search-field">
+          <input type="text" placeholder="Search Visas..." class="search-input">
+          <button class="search-btn">🔍</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container visas-container">
+    <aside class="visas-sidebar">
+      <div class="sidebar-nav">
+        <h3>Visa Categories</h3>
+        <ul class="category-list">
+          <li><a href="#popular" class="category-link active">Popular Visas</a></li>
+          <li><a href="#asia" class="category-link">Asia Visas</a></li>
+          <li><a href="#europe" class="category-link">Europe Visas</a></li>
+          <li><a href="#middle-east" class="category-link">Middle East Visas</a></li>
+          <li><a href="#africa" class="category-link">Africa Visas</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-help">
+        <h4>Need Help?</h4>
+        <p>Our visa experts are ready to assist you 24/7</p>
+        <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn-primary btn-sm">Contact Us</a>
+      </div>
+    </aside>
+
+    <main class="visas-main">
+      <section class="visas-section" id="popular">
+        <div class="section-header">
+          <h2>Apply for Your eVisa Hassle-Free</h2>
+          <p>Skip long queues—apply for your eVisa online effortlessly from anywhere.</p>
+        </div>
+        <p style="text-align: center; padding: 40px 20px; color: #666;">Please create a Visas page in WordPress admin to customize this content.</p>
+      </section>
+    </main>
+  </div>
+<?php
+}
+?>
 
 <?php get_footer(); ?>
