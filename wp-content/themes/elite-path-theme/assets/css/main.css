@@ -953,6 +953,12 @@ abbr[title="required"] { color:var(--color-accent); text-decoration:none; font-w
   justify-content: center;
 }
 
+.category-label {
+  display: block;
+  visibility: visible;
+  opacity: 1;
+}
+
 @media (max-width: 768px) {
   .category-buttons {
     grid-template-columns: repeat(2, 1fr);
