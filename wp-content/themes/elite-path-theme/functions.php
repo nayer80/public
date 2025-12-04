@@ -12,6 +12,15 @@ function elite_path_setup() {
 }
 add_action('after_setup_theme', 'elite_path_setup');
 
+// Add custom rewrite rule for visas page
+function elite_path_rewrite_rules() {
+    add_rewrite_rule('^visas/?$', 'index.php?pagename=visas', 'top');
+    add_rewrite_rule('^activities/?$', 'index.php?pagename=activities', 'top');
+    add_rewrite_rule('^holidays/?$', 'index.php?pagename=holidays', 'top');
+    add_rewrite_rule('^cruises/?$', 'index.php?pagename=cruises', 'top');
+}
+add_action('init', 'elite_path_rewrite_rules');
+
 function elite_path_enqueue_scripts() {
     // Preconnect to Google Fonts for faster font loading
     wp_enqueue_style('preconnect-gf', 'https://fonts.googleapis.com', array(), null);
