@@ -937,6 +937,8 @@ abbr[title="required"] { color:var(--color-accent); text-decoration:none; font-w
   font-size: 13px;
   transition: all 0.3s ease;
   white-space: nowrap;
+  min-width: fit-content;
+  overflow: visible;
 }
 
 .category-btn:hover {
@@ -954,9 +956,12 @@ abbr[title="required"] { color:var(--color-accent); text-decoration:none; font-w
 }
 
 .category-label {
-  display: block;
+  display: inline-block;
   visibility: visible;
   opacity: 1;
+  max-width: none;
+  min-width: auto;
+  width: auto;
 }
 
 @media (max-width: 768px) {
