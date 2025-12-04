@@ -374,7 +374,8 @@
         const h = href.toLowerCase();
         if(h.includes('/activities') || h.includes('activities')) return 'activities';
         if(h.includes('/holidays') || h.includes('holidays')) return 'holidays';
-        if(h.includes('/visas') || h.includes('visas')) return 'visas';
+        // Visas and Contact links are in primary navigation but icons are hidden
+        // if(h.includes('/visas') || h.includes('visas')) return 'visas';
         if(h.includes('/cruises') || h.includes('cruises')) return 'cruises';
         return null;
       }
