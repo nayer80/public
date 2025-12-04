@@ -342,12 +342,11 @@
   <script>
     (function(){
       // Inject SVG icons into primary menu links that match known slugs.
-      // SVG files are served from the assets/images/icons directory
       const iconMap = {
-        activities: '<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/icons/activities.svg',
-        holidays: '<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/icons/holidays.svg',
-        visas: '<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/icons/visas.svg',
-        cruises: '<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/icons/cruises.svg'
+        activities: '<svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M12 2C8.1 2 5 5.1 5 9c0 5.3 7 13 7 13s7-7.7 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>',
+        holidays: '<svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M20 8c0 3.3-3.6 6-8 6s-8-2.7-8-6 3.6-6 8-6 8 2.7 8 6zm-8 4.5c2.5 0 4.5-1.1 4.5-2.5S14.5 7.5 12 7.5 7.5 8.6 7.5 10 9.5 12.5 12 12.5zM4 18v2h16v-2c0-1.7-3.6-3-8-3s-8 1.3-8 3z"/></svg>',
+        visas: '<svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M12 2a3 3 0 0 0-3 3v1H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-3V5a3 3 0 0 0-3-3zm0 5a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm-4 8h8v2H8v-2z"/></svg>',
+        cruises: '<svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M2 17c0 1.1.9 2 2 2h16v-2H4c-.6 0-1-.4-1-1 0-2.8 3.6-5 8-5s8 2.2 8 5c0 .6-.4 1-1 1h-1v2h1c1.1 0 2-.9 2-2 0-3.3-4.7-6-10-6S2 13.7 2 17zM6 8h12v2H6V8zm0-4h12v2H6V4z"/></svg>'
       };
 
       function matchKeyFromHref(href){
@@ -362,18 +361,17 @@
 
       document.addEventListener('DOMContentLoaded', function(){
         const links = document.querySelectorAll('.main-nav .menu a');
+        console.log('Found ' + links.length + ' menu links');
         links.forEach(function(a){
           const href = a.getAttribute('href') || '';
+          console.log('Menu link href:', href);
           const key = matchKeyFromHref(href);
+          console.log('Matched key:', key);
           if(key && iconMap[key]){
             const span = document.createElement('span');
             span.className = 'menu-icon';
             span.setAttribute('aria-hidden','true');
-            const img = document.createElement('img');
-            img.src = iconMap[key];
-            img.alt = '';
-            img.setAttribute('aria-hidden', 'true');
-            span.appendChild(img);
+            span.innerHTML = iconMap[key];
             a.prepend(span);
             a.classList.add('menu-with-icon');
           }
