@@ -227,21 +227,29 @@
         
         <!-- Category Buttons Below Logo -->
         <div class="category-buttons-header">
-          <a href="<?php echo esc_url(home_url('/activities/')); ?>" class="category-btn">
-            <span class="category-icon">📍</span>
-            <span class="category-label">Activities</span>
-          </a>
-          <a href="<?php echo esc_url(home_url('/holidays/')); ?>" class="category-btn">
-            <span class="category-icon">🏖️</span>
-            <span class="category-label">Holidays</span>
-          </a>
-          <a href="<?php echo esc_url(home_url('/visas/')); ?>" class="category-btn">
-            <span class="category-label">Visas</span>
-          </a>
-          <a href="<?php echo esc_url(home_url('/cruises/')); ?>" class="category-btn">
-            <span class="category-icon">🚢</span>
-            <span class="category-label">Cruises</span>
-          </a>
+            <div class="category-group">
+              <a href="<?php echo esc_url(home_url('/activities/')); ?>" class="category-btn">
+                <span class="category-icon">📍</span>
+                <span class="category-label">Activities</span>
+              </a>
+            </div>
+            <div class="category-group">
+              <a href="<?php echo esc_url(home_url('/holidays/')); ?>" class="category-btn">
+                <span class="category-icon">🏖️</span>
+                <span class="category-label">Holidays</span>
+              </a>
+            </div>
+            <div class="category-group">
+              <a href="<?php echo esc_url(home_url('/visas/')); ?>" class="category-btn">
+                <span class="category-label">Visas</span>
+              </a>
+            </div>
+            <div class="category-group">
+              <a href="<?php echo esc_url(home_url('/cruises/')); ?>" class="category-btn">
+                <span class="category-icon">🚢</span>
+                <span class="category-label">Cruises</span>
+              </a>
+            </div>
         </div>
       </div>
 
