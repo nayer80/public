@@ -127,7 +127,7 @@ get_header(); ?>
 
         <div class="visas-grid">
           <div class="visa-card">
-            <div class="visa-card-image"><div class="visa-flag">🇺🇸</div></div>
+            <div class="visa-card-image"><img src="http://elite-path.local/wp-content/uploads/2025/12/USA-Visa.png" alt="USA Visa" class="visa-image"></div>
             <div class="visa-card-body">
               <h3><a href="#usa">USA Visa</a></h3>
               <div class="visa-info"><span class="processing-time">⏱ 15-30 days</span></div>
