@@ -917,6 +917,8 @@ abbr[title="required"] { color:var(--color-accent); text-decoration:none; font-w
 /* Category Buttons in Header */
 .category-buttons-header {
   display: flex;
+  align-items: center;
+  justify-content: flex-start;
   gap: 12px;
   margin-top: 12px;
   flex-wrap: wrap;
@@ -939,6 +941,7 @@ abbr[title="required"] { color:var(--color-accent); text-decoration:none; font-w
   white-space: nowrap;
   min-width: fit-content;
   overflow: visible;
+  flex-shrink: 0;
 }
 
 .category-btn:hover {
