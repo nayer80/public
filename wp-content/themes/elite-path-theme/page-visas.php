@@ -1,5 +1,5 @@
 <?php
-/* Visa Services page template - Rayna Tours style */
+/* Visa Services page template - Visa Services */
 get_header(); ?>
 
   <!-- Page Header with Hero -->
