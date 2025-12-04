@@ -245,8 +245,6 @@
         </div>
       </div>
 
-      <button class="menu-toggle" aria-expanded="false" aria-controls="primary-menu">☰</button>
-
       <nav id="primary-menu" class="main-nav" role="navigation">
         <?php
           wp_nav_menu(array(
