@@ -236,7 +236,6 @@
             <span class="category-label">Holidays</span>
           </a>
           <a href="<?php echo esc_url(home_url('/visas/')); ?>" class="category-btn">
-            <span class="category-icon">🛂</span>
             <span class="category-label">Visas</span>
           </a>
           <a href="<?php echo esc_url(home_url('/cruises/')); ?>" class="category-btn">
