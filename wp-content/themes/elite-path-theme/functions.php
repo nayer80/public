@@ -25,7 +25,7 @@ function elite_path_flush_rewrite_rules() {
     elite_path_rewrite_rules();
     flush_rewrite_rules();
 }
-add_action(" after_switch_theme\, \elite_path_flush_rewrite_rules\);
+add_action( 'after_switch_theme', 'elite_path_flush_rewrite_rules' );
 
 
 function elite_path_enqueue_scripts() {
@@ -406,4 +406,5 @@ add_filter('wp_nav_menu_objects', function($items) {
         return true;
     });
 }, 10, 1);
+
 
