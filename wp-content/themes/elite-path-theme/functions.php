@@ -407,4 +407,10 @@ add_filter('wp_nav_menu_objects', function($items) {
     });
 }, 10, 1);
 
+// Force clear menu cache on every page load to ensure menu filter applies
+add_action('wp', function() {
+    wp_cache_delete( 'nav_menu_item_hierarchy' );
+    wp_cache_delete( 'nav_menu_parents' );
+});
+
 
