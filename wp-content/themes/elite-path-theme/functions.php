@@ -20,6 +20,13 @@ function elite_path_rewrite_rules() {
     add_rewrite_rule('^cruises/?$', 'index.php?pagename=cruises', 'top');
 }
 add_action('init', 'elite_path_rewrite_rules');
+// Flush rewrite rules on theme activation
+function elite_path_flush_rewrite_rules() {
+    elite_path_rewrite_rules();
+    flush_rewrite_rules();
+}
+add_action(" after_switch_theme\, \elite_path_flush_rewrite_rules\);
+
 
 function elite_path_enqueue_scripts() {
     // Preconnect to Google Fonts for faster font loading
@@ -399,3 +406,4 @@ add_filter('wp_nav_menu_objects', function($items) {
         return true;
     });
 }, 10, 1);
+
