@@ -766,3 +766,9 @@
 [04-Dec-2025 16:31:39 UTC]   Automatic theme updates starting...
 [04-Dec-2025 16:31:40 UTC]   Automatic theme updates complete.
 [04-Dec-2025 16:31:40 UTC] Automatic updates complete.
+[04-Dec-2025 19:22:03 UTC] PHP Warning:  mysqli_real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it in C:\Users\King\Local Sites\elite-path\app\public\wp-includes\class-wpdb.php on line 1994
+[04-Dec-2025 19:22:03 UTC] PHP Warning:  mysqli_real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it in C:\Users\King\Local Sites\elite-path\app\public\wp-includes\class-wpdb.php on line 1994
+[04-Dec-2025 19:22:03 UTC] PHP Warning:  mysqli_real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it in C:\Users\King\Local Sites\elite-path\app\public\wp-includes\class-wpdb.php on line 1994
+[05-Dec-2025 15:45:33 UTC] PHP Warning:  mysqli_real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it in C:\Users\King\Local Sites\elite-path\app\public\wp-includes\class-wpdb.php on line 1994
+[05-Dec-2025 15:45:33 UTC] PHP Warning:  mysqli_real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it in C:\Users\King\Local Sites\elite-path\app\public\wp-includes\class-wpdb.php on line 1994
+[05-Dec-2025 15:45:33 UTC] PHP Warning:  mysqli_real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it in C:\Users\King\Local Sites\elite-path\app\public\wp-includes\class-wpdb.php on line 1994

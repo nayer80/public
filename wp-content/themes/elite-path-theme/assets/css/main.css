@@ -1033,3 +1033,15 @@ abbr[title="required"] { color:var(--color-accent); text-decoration:none; font-w
   }
 }
 
+ 
+ / *   H i d e   V i s a s   a n d   C o n t a c t   m e n u   i t e m s   f r o m   m a i n   n a v i g a t i o n   * /  
+ . m a i n - n a v   . m e n u   l i : h a s ( >   a [ h r e f * = \  
+ / v i s a s \ ] )   {  
+     d i s p l a y :   n o n e   ! i m p o r t a n t ;  
+ }  
+  
+ . m a i n - n a v   . m e n u   l i : h a s ( >   a [ h r e f * = \  
+ / c o n t a c t \ ] )   {  
+     d i s p l a y :   n o n e   ! i m p o r t a n t ;  
+ }  
+ 

@@ -1,0 +1,11 @@
+/* Hide Visas and Contact menu items from main navigation display */
+.main-nav .menu li a[href*="/visas/"],
+.main-nav .menu li a[href*="/contact/"] {
+  display: none !important;
+}
+
+/* Also hide the parent li if they only contain these links */
+.main-nav .menu li:has(> a[href*="/visas/"]),
+.main-nav .menu li:has(> a[href*="/contact/"]) {
+  display: none !important;
+}
