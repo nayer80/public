@@ -413,4 +413,62 @@ add_action('wp', function() {
     wp_cache_delete( 'nav_menu_parents' );
 });
 
+// One-time admin action: ensure Primary menu does not contain Visas/Contact items
+add_action( 'admin_init', function() {
+    if ( ! current_user_can( 'manage_options' ) ) {
+        return;
+    }
+
+    // Run only once
+    if ( get_option( 'elite_path_primary_menu_fixed' ) ) {
+        return;
+    }
+
+    // Find or create a menu called 'Primary' or 'Primary Navigation'
+    $menu_name_candidates = array( 'Primary', 'Primary Menu', 'Primary Navigation', 'Menu 1' );
+    $menu_id = false;
+    foreach ( $menu_name_candidates as $name ) {
+        $term = wp_get_nav_menu_object( $name );
+        if ( $term && ! is_wp_error( $term ) ) {
+            $menu_id = $term->term_id;
+            break;
+        }
+    }
+
+    if ( ! $menu_id ) {
+        $menu_id = wp_create_nav_menu( 'Primary' );
+    }
+
+    if ( ! $menu_id || is_wp_error( $menu_id ) ) {
+        update_option( 'elite_path_primary_menu_fixed', 1 );
+        return;
+    }
+
+    // Get menu items and remove any that link to /visas or /contact
+    $items = wp_get_nav_menu_items( $menu_id );
+    if ( $items ) {
+        foreach ( $items as $item ) {
+            $url = isset( $item->url ) ? $item->url : '';
+            $title = isset( $item->title ) ? $item->title : '';
+            if ( stripos( $url, '/visas' ) !== false || stripos( $url, '/contact' ) !== false || stripos( $title, 'visa' ) !== false || stripos( $title, 'contact' ) !== false ) {
+                wp_delete_post( $item->ID, true );
+            }
+        }
+    }
+
+    // Ensure this menu is assigned to the 'primary' location if the theme supports it
+    $locations = get_theme_mod( 'nav_menu_locations' );
+    if ( ! is_array( $locations ) ) {
+        $locations = array();
+    }
+    // Only set if not already assigned
+    if ( empty( $locations['primary'] ) || (int) $locations['primary'] !== (int) $menu_id ) {
+        $locations['primary'] = (int) $menu_id;
+        set_theme_mod( 'nav_menu_locations', $locations );
+    }
+
+    // Mark done
+    update_option( 'elite_path_primary_menu_fixed', 1 );
+} );
+
 
