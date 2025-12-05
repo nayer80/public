@@ -1,4 +1,4 @@
-/* Additional theme specific styles */
+﻿/* Additional theme specific styles */
 
 @keyframes shadowGlow {
   0%, 100% {
@@ -124,10 +124,10 @@
 .main-nav .menu li a::before { content: ""; display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:10px; background:linear-gradient(180deg, #f8f9fb, #ffffff); box-shadow:0 6px 18px rgba(3,16,28,0.06); font-size:16px; }
 
 /* Specific icons per menu item (fall back to emoji) */
-.main-nav .menu a[href*="activities"]::before { content: "🔭"; }
-.main-nav .menu a[href*="holidays"]::before { content: "⛱️"; }
-.main-nav .menu a[href*="visas"]::before { content: "🛂"; }
-.main-nav .menu a[href*="cruises"]::before { content: "🚢"; }
+.main-nav .menu a[href*="activities"]::before { content: "ðŸ”­"; }
+.main-nav .menu a[href*="holidays"]::before { content: "â›±ï¸"; }
+.main-nav .menu a[href*="visas"]::before { content: "ðŸ›‚"; }
+.main-nav .menu a[href*="cruises"]::before { content: "ðŸš¢"; }
 
 @media (max-width:900px){
   .main-nav .menu { gap:12px; }
@@ -905,7 +905,7 @@ abbr[title="required"] { color:var(--color-accent); text-decoration:none; font-w
   position: relative;
 }
 .main-nav .menu a[href*="/contact"]::after {
-  content: "✉";
+  content: "âœ‰";
   position: absolute;
   left: 0;
   top: 50%;
@@ -1031,17 +1031,7 @@ abbr[title="required"] { color:var(--color-accent); text-decoration:none; font-w
   .category-icon {
     font-size: 14px;
   }
-}
 
- 
- / *   H i d e   V i s a s   a n d   C o n t a c t   m e n u   i t e m s   f r o m   m a i n   n a v i g a t i o n   * /  
- . m a i n - n a v   . m e n u   l i : h a s ( >   a [ h r e f * = \  
- / v i s a s \ ] )   {  
-     d i s p l a y :   n o n e   ! i m p o r t a n t ;  
- }  
-  
- . m a i n - n a v   . m e n u   l i : h a s ( >   a [ h r e f * = \  
- / c o n t a c t \ ] )   {  
-     d i s p l a y :   n o n e   ! i m p o r t a n t ;  
- }  
- 
+/* Hide Visas menu item from main navigation */
+.main-nav .menu li:has(> a[href*='\/visas']) { display: none !important; }
+.main-nav .menu a[href*='\/visas'] { display: none !important; }
