@@ -388,3 +388,14 @@ add_action( 'init', function() {
         }
     }
 } );
+
+// Filter to remove Visas and Contact menu items from primary menu
+add_filter('wp_nav_menu_objects', function($items) {
+    return array_filter($items, function($item) {
+        // Remove items with visas or contact in the URL
+        if (strpos($item->url, '/visas') !== false || strpos($item->url, '/contact') !== false) {
+            return false;
+        }
+        return true;
+    });
+}, 10, 1);
