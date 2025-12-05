@@ -396,6 +396,19 @@ add_action( 'init', function() {
     }
 } );
 
+// Temporary admin-only cleanup: delete the one-time flag option from the database.
+// This runs only for administrators and is safe — it does not do anything for normal visitors.
+add_action( 'admin_init', function() {
+    if ( ! current_user_can( 'manage_options' ) ) {
+        return;
+    }
+
+    // Delete the option if present
+    if ( get_option( 'elite_path_primary_menu_fixed', false ) !== false ) {
+        delete_option( 'elite_path_primary_menu_fixed' );
+    }
+} );
+
 // Filter to remove Visas and Contact menu items from primary menu
 add_filter('wp_nav_menu_objects', function($items) {
     return array_filter($items, function($item) {
