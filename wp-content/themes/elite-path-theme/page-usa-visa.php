@@ -1,23 +1,19 @@
 <?php
-/* Template Name: USA Visa */
-get_header(); ?>
-
-<section class="page-header visa-header">
-  <div class="container">
-    <h1 class="page-title">USA Visa</h1>
-    <p class="page-intro">Everything you need to apply for a USA visa — requirements, processing times, and how we can help.</p>
-  </div>
-</section>
-
-<div class="container page-grid">
-  <main class="content page-content">
-    <section class="usa-visa-overview">
-      <h2>Overview</h2>
-      <p>The United States offers several visa categories including tourist (B-2), business (B-1), student (F-1) and work visas. Processing times and requirements depend on the visa type and your country of residence.</p>
-
-      <h3>Typical Requirements</h3>
-      <ul>
-        <li>Valid passport with at least 6 months remaining</li>
+// USA Visa template removed per user request.
+// This file previously contained the USA Visa page template and has been cleared.
+status_header( 404 );
+nocache_headers();
+?><!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Not Found</title>
+  </head>
+  <body>
+    <h1>Not Found</h1>
+    <p>This page has been removed.</p>
+  </body>
+</html>
         <li>Completed application forms</li>
         <li>Passport-sized photos</li>
         <li>Proof of travel itinerary and accommodation</li>

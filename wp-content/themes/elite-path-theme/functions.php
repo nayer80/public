@@ -244,50 +244,7 @@ function elite_path_insert_sample_tours() {
  * Associates the page with the `page-usa-visa.php` template.
  * This function is idempotent and will not recreate the page.
  */
-function elite_path_ensure_usa_visa_page() {
-    // Use an option flag to avoid repeated checks on every request
-    if ( get_option( 'elite_path_usa_visa_created' ) ) {
-        return;
-    }
-
-    // Prefer a nested path under /visas/ -> /visas/usa-visa
-    $existing = get_page_by_path( 'visas/usa-visa' );
-    // If not found, also check for top-level 'usa-visa' for backward-compatibility
-    if ( ! $existing ) {
-        $existing = get_page_by_path( 'usa-visa' );
-    }
-    if ( $existing ) {
-        update_option( 'elite_path_usa_visa_created', 1 );
-        return;
-    }
-
-    // Prepare page data
-    $page_data = array(
-        'post_title'   => 'USA Visa',
-        'post_name'    => 'usa-visa',
-        'post_content' => 'Everything you need to apply for a USA visa — requirements, processing times, and how we can help.',
-        'post_status'  => 'publish',
-        'post_type'    => 'page',
-    );
-
-    // Determine if a 'visas' parent page exists and set as parent to create /visas/usa-visa
-    $parent = get_page_by_path( 'visas' );
-    if ( $parent && isset( $parent->ID ) ) {
-        $page_data['post_parent'] = $parent->ID;
-    }
-
-    // Insert the page
-    $post_id = wp_insert_post( $page_data );
-    if ( ! is_wp_error( $post_id ) && $post_id ) {
-        // Assign the custom page template shipped with the theme
-        update_post_meta( $post_id, '_wp_page_template', 'page-usa-visa.php' );
-        // Mark as created so we skip this next time
-        update_option( 'elite_path_usa_visa_created', 1 );
-        // Flush rewrite rules once to ensure the new page is reachable
-        flush_rewrite_rules();
-    }
-}
-add_action( 'init', 'elite_path_ensure_usa_visa_page' );
+// USA visa auto-create and migration code removed per user request
 
 /**
  * Helper to attach an image file to a post and return the attachment ID
