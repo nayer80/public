@@ -169,6 +169,39 @@ function elite_path_register_tours() {
 add_action( 'init', 'elite_path_register_tours' );
 
 /**
+ * Register 'visa' custom post type for single visa detail pages
+ */
+function elite_path_register_visas() {
+    $labels = array(
+        'name'               => _x( 'Visas', 'post type general name', 'elite-path' ),
+        'singular_name'      => _x( 'Visa', 'post type singular name', 'elite-path' ),
+        'menu_name'          => _x( 'Visas', 'admin menu', 'elite-path' ),
+        'name_admin_bar'     => _x( 'Visa', 'add new on admin bar', 'elite-path' ),
+        'add_new'            => _x( 'Add New', 'visa', 'elite-path' ),
+        'add_new_item'       => __( 'Add New Visa', 'elite-path' ),
+        'new_item'           => __( 'New Visa', 'elite-path' ),
+        'edit_item'          => __( 'Edit Visa', 'elite-path' ),
+        'view_item'          => __( 'View Visa', 'elite-path' ),
+        'all_items'          => __( 'All Visas', 'elite-path' ),
+        'search_items'       => __( 'Search Visas', 'elite-path' ),
+    );
+
+    $args = array(
+        'labels'             => $labels,
+        'public'             => true,
+        'has_archive'        => false, // avoid archive conflict with existing /visas/ page
+        'rewrite'            => array( 'slug' => 'visas', 'with_front' => false ),
+        'show_in_rest'       => true,
+        'supports'           => array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields' ),
+        'menu_position'      => 21,
+        'menu_icon'          => 'dashicons-id',
+    );
+
+    register_post_type( 'visa', $args );
+}
+add_action( 'init', 'elite_path_register_visas' );
+
+/**
  * Create sample tour posts on theme activation if none exist
  */
 /**
